@@ -72,7 +72,7 @@ func BuildFromConsole(node *BinaryTreeNode, parent string) {
 	}
 }
 
-func SearchCode(name string, node *BinaryTreeNode) *BinaryTreeNode {
+func SearchNode(name string, node *BinaryTreeNode) *BinaryTreeNode {
 	var queue QueueArray
 	queue.InitQueue()
 	var res *BinaryTreeNode
@@ -88,10 +88,10 @@ func SearchCode(name string, node *BinaryTreeNode) *BinaryTreeNode {
 			break
 		}
 
-		if (*node).LeftChild != nil{
+		if (*temp).LeftChild != nil{
 			queue.EnQueue((*temp).LeftChild)
 		}
-		if (*node).RightChild != nil{
+		if (*temp).RightChild != nil{
 			queue.EnQueue((*temp).RightChild)
 		}
 

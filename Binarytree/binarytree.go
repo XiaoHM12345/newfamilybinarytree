@@ -43,7 +43,7 @@ func (c *LinkedBinaryTree)BuildTreeFromConsole() {
 }
 
 func (c *LinkedBinaryTree)AddMember(parentName string, name string) bool {
-	x := SearchCode(parentName, c.root)
+	x := SearchNode(parentName, c.root)
 	if x == nil {
 		return false
 	}
@@ -58,3 +58,34 @@ func (c *LinkedBinaryTree)AddMember(parentName string, name string) bool {
 	}
 	return true
 }
+
+func (c *LinkedBinaryTree)ChangeName(oldName string, newName string) bool {
+	var queue QueueArray
+	queue.InitQueue()
+	temp := c.root
+
+	if c.root == nil {
+		return false
+	}
+
+	for temp != nil {
+		//visit node
+		if oldName == (*temp).Name {
+			(*temp).Name = newName
+		} else if oldName == (*temp).Parent {
+			(*temp).Parent = newName
+		}
+
+		if (*temp).LeftChild != nil{
+			queue.EnQueue((*temp).LeftChild)
+		}
+		if (*temp).RightChild != nil{
+			queue.EnQueue((*temp).RightChild)
+		}
+
+		temp,_ = queue.SqQueue()
+	}
+	return true
+}
+
+

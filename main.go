@@ -14,5 +14,12 @@ func main() {
 	} else {
 		fmt.Printf("err\n")
 	}
+
+	if (*tree).ChangeName("c","g") {
+		fmt.Printf("true\n")
+	} else {
+		fmt.Printf("err\n")
+	}
+
 	tree.BinaryTreePreOder()
 }
