@@ -13,36 +13,60 @@ type BinaryTreeNode struct {
 	RightChild 	*BinaryTreeNode
 }
 
-func PreOder(node *BinaryTreeNode) {
+func PreOder(node *BinaryTreeNode, visit Visit) {
 	if node != nil{
 		//visit node
 		//test
-		fmt.Printf("%s\n", node.Name)
+		//fmt.Printf("%s\n", node.Name)
+		visit.Visit(node)
 		//test
-		PreOder(node.LeftChild)
-		PreOder(node.RightChild)
+		PreOder(node.LeftChild, visit)
+		PreOder(node.RightChild, visit)
 	}
 }
 
-func InOder(node *BinaryTreeNode) {
+func InOder(node *BinaryTreeNode, visit Visit) {
 	if node != nil{
-		InOder(node.LeftChild)
+		InOder(node.LeftChild, visit)
 		//visit node
 		//test
-		fmt.Printf("%s\n", node.Name)
+		//fmt.Printf("%s\n", node.Name)
+		visit.Visit(node)
 		//test
-		InOder(node.RightChild)
+		InOder(node.RightChild, visit)
 	}
 }
 
-func PostOder(node *BinaryTreeNode) {
+func PostOder(node *BinaryTreeNode, visit Visit) {
 	if node != nil{
-		PostOder(node.LeftChild)
-		PostOder(node.RightChild)
+		PostOder(node.LeftChild, visit)
+		PostOder(node.RightChild, visit)
 		//visit node
 		//test
-		fmt.Printf("%s\n", node.Name)
+		//fmt.Printf("%s\n", node.Name)
+		visit.Visit(node)
 		//test
+	}
+}
+
+func LevelOrder(node *BinaryTreeNode, visit Visit) {
+	var queue QueueArray
+	queue.InitQueue()
+
+	temp := node
+
+	for temp != nil {
+		//visit node
+		visit.Visit(temp)
+
+		if (*temp).LeftChild != nil{
+			queue.EnQueue((*temp).LeftChild)
+		}
+		if (*temp).RightChild != nil{
+			queue.EnQueue((*temp).RightChild)
+		}
+
+		temp,_ = queue.SqQueue()
 	}
 }
 

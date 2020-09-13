@@ -13,16 +13,20 @@ func (c *LinkedBinaryTree) Size() int16 {
 	return c.treeSize
 }
 
-func (c *LinkedBinaryTree) BinaryTreePreOder() {
-	PreOder(c.root)
+func (c *LinkedBinaryTree) BinaryTreePreOder(visit Visit) {
+	PreOder(c.root, visit)
 }
 
-func (c *LinkedBinaryTree) BinaryTreeInOder() {
-	InOder(c.root)
+func (c *LinkedBinaryTree) BinaryTreeInOder(visit Visit) {
+	InOder(c.root, visit)
 }
 
-func (c *LinkedBinaryTree) BinaryTreePostOder() {
-	PostOder(c.root)
+func (c *LinkedBinaryTree) BinaryTreePostOder(visit Visit) {
+	PostOder(c.root, visit)
+}
+
+func (c *LinkedBinaryTree) BinaryLevelPostOder(visit Visit) {
+	LevelOrder(c.root, visit)
 }
 
 func NewBinaryTree() *LinkedBinaryTree {
